@@ -1,0 +1,227 @@
+@import "./variables";
+
+html, body {
+    box-sizing: border-box;
+    margin: 0;
+}
+
+* {
+    box-sizing: inherit;
+}
+
+@mixin media-query($size) {
+    @media (min-width: map-get($mediaBreakpoints, $size)) {
+        @content;
+    }
+}
+
+.header {
+    height: 9rem;
+    background: $primaryColor url("../images/bg-header-mobile.svg");
+}
+
+.container {
+    min-height: calc(100vh - 9rem);
+    background-color: $mainBg;
+    padding: 3rem 1.5rem;
+    position: relative;
+
+    @include media-query(tablet) {
+        padding: 5rem 1.5rem 3rem;
+    }
+}
+
+.job {
+    background-color: $white;
+    padding: 2rem 1.5rem 1.5rem;
+    border-radius: .5rem;
+    font-family: $font-family;
+    position: relative;
+    width: Min(70rem, 100%);
+    margin: 0 auto;
+
+    &:not(:last-child) {
+        margin-bottom: 3rem;
+    }
+
+    &--featured {
+        border-left: .35rem solid $primaryColor;
+    }
+
+    @include media-query(tablet) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        &:not(:last-child) {
+            margin-bottom: 1.5rem;
+        }
+    }
+
+    &__company-img {
+        max-width: 3.125rem;
+        position: absolute;
+        top: 0;
+        transform: translateY(-50%);
+
+        @include media-query(tablet) {
+            position: unset;
+            transform: unset;
+            max-width: 100%;
+            margin-right: 1rem;
+        }
+    }
+
+    &__company {
+        font-size: .88rem;
+        color: $primaryColor;
+        margin: 0 .8rem 0 0;
+    }
+
+    &__tag {
+        color: $white;
+        font-weight: 700;
+        font-size: .6rem;
+        line-height: 90%;
+        padding: .5rem;
+        border-radius: 2rem;
+        margin: 0 .5rem 0 0;
+
+        &--new {
+            background-color: $primaryColor;
+        }
+
+        &--featured {
+            background-color: $veryDarkGrayishCyan;
+        }
+    }
+
+    &__position {
+        color: $veryDarkGrayishCyan;
+        font-size: 1.2rem;
+        margin: 1rem 0;
+    }
+
+    &__sub-detail {
+        font-size: .88rem;
+        margin: 0 .5rem 0 0;
+        color: $darkGrayishCyan;
+
+        &:not(:last-child) {
+            &::after {
+                content: "•";
+                padding-left: .5rem;
+            }
+        }
+    }
+
+    &__separator {
+        margin: 1rem 0;
+        border: 0;
+        border-top: 1px solid $darkGrayishCyan;
+    }
+
+    &__languages {
+        margin-top: -.8rem;
+
+        @include media-query(tablet) {
+            flex: 1;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+    }
+}
+
+.button {
+    border: none;
+    background: $buttonColor;
+    color: $primaryColor;
+    font-family: $font-family;
+    font-weight: 700;
+    font-size: .8rem;
+    padding: .5rem;
+    border-radius: .3rem;
+    margin: .8rem .8rem 0 0;
+    position: relative;
+    cursor: pointer;
+
+    &--tag {
+        margin-right: 2.8rem;
+        border-radius: .3rem 0 0 .3rem;
+
+        &:hover {
+            &::after {
+                background-color: $veryDarkGrayishCyan;
+            }
+        }
+
+        &::after {
+            content: url("/src/images/icon-remove.svg");
+            background-color: $primaryColor;
+            position: absolute;
+            top: 0;
+            right: 0;
+            transform: translateX(100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            padding: 0 .5rem;
+            border-radius: 0 .3rem .3rem 0;
+        }
+    }
+}
+
+.flex {
+    display: flex;
+    flex-direction: column;
+
+    @include media-query(tablet) {
+        flex-direction: row;
+        align-items: center;
+    }
+
+    &--row {
+        flex-direction: row;
+        align-items: center;
+    }
+}
+
+.filter-bar {
+    background-color: $white;
+    width: Min(70rem, 100%);
+    height: auto;
+    padding: 1.5rem;
+    border-radius: .5rem;
+    margin: -5rem 0 4rem 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    @include media-query(tablet) {
+        width: Min(70rem, 95%);
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        margin: 0;
+    }
+
+    &__tags {
+        margin-top: -.8rem;
+    }
+
+    &__clear {
+        flex-basis: 50px;
+        font-family: $font-family;
+        font-weight: 700;
+        font-size: .8rem;
+        color: $darkGrayishCyan;
+        cursor: pointer;
+    }
+}
+
+.spacing {
+    height: 60px;
+}
