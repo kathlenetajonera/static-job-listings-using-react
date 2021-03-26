@@ -7,6 +7,14 @@ html, body {
 * {
   box-sizing: inherit; }
 
+@keyframes loading {
+  0% {
+    transform: rotate(360deg); }
+  50% {
+    border-width: .2rem; }
+  10% {
+    border-width: .5rem; } }
+
 .header {
   height: 9rem;
   background: #5ba4a4 url("../images/bg-header-mobile.svg"); }
@@ -27,7 +35,14 @@ html, body {
   font-family: "Spartan", sans-serif;
   position: relative;
   width: Min(70rem, 100%);
-  margin: 0 auto; }
+  margin: 0 auto;
+  box-shadow: 0 0.8rem 1rem 0 #daeeef;
+  transition: .2s ease;
+  transform: translateY(20px);
+  opacity: 0; }
+  .job--active {
+    transform: translateY(0);
+    opacity: 1; }
   .job:not(:last-child) {
     margin-bottom: 3rem; }
   .job--featured {
@@ -69,7 +84,10 @@ html, body {
   .job__position {
     color: #2c3a3a;
     font-size: 1.2rem;
-    margin: 1rem 0; }
+    margin: 1rem 0;
+    cursor: pointer; }
+    .job__position:hover {
+      color: #5ba4a4; }
   .job__sub-detail {
     font-size: .88rem;
     margin: 0 .5rem 0 0;
@@ -81,6 +99,9 @@ html, body {
     margin: 1rem 0;
     border: 0;
     border-top: 1px solid #7b8e8e; }
+    @media (min-width: 48rem) {
+      .job__separator {
+        display: none; } }
   .job__languages {
     margin-top: -.8rem; }
     @media (min-width: 48rem) {
@@ -89,48 +110,6 @@ html, body {
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-end; } }
-
-.button {
-  border: none;
-  background: #eef6f6;
-  color: #5ba4a4;
-  font-family: "Spartan", sans-serif;
-  font-weight: 700;
-  font-size: .8rem;
-  padding: .5rem;
-  border-radius: .3rem;
-  margin: .8rem .8rem 0 0;
-  position: relative;
-  cursor: pointer; }
-  .button--tag {
-    margin-right: 2.8rem;
-    border-radius: .3rem 0 0 .3rem; }
-    .button--tag:hover::after {
-      background-color: #2c3a3a; }
-    .button--tag::after {
-      content: url("/src/images/icon-remove.svg");
-      background-color: #5ba4a4;
-      position: absolute;
-      top: 0;
-      right: 0;
-      transform: translateX(100%);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100%;
-      padding: 0 .5rem;
-      border-radius: 0 .3rem .3rem 0; }
-
-.flex {
-  display: flex;
-  flex-direction: column; }
-  @media (min-width: 48rem) {
-    .flex {
-      flex-direction: row;
-      align-items: center; } }
-  .flex--row {
-    flex-direction: row;
-    align-items: center; }
 
 .filter-bar {
   background-color: white;
@@ -159,6 +138,73 @@ html, body {
     font-size: .8rem;
     color: #7b8e8e;
     cursor: pointer; }
+    .filter-bar__clear:hover {
+      color: #5ba4a4;
+      text-decoration: underline; }
 
-.spacing {
-  height: 60px; }
+.button {
+  outline: none;
+  border: none;
+  background: #eef6f6;
+  color: #5ba4a4;
+  font-family: "Spartan", sans-serif;
+  font-weight: 700;
+  font-size: .8rem;
+  padding: .5rem;
+  border-radius: .3rem;
+  margin: .8rem .8rem 0 0;
+  position: relative;
+  cursor: pointer; }
+  .button:hover {
+    color: white;
+    background-color: #5ba4a4; }
+  .button--tag {
+    margin-right: 2.8rem;
+    border-radius: .3rem 0 0 .3rem; }
+    .button--tag::after {
+      content: url("/src/images/icon-remove.svg");
+      background-color: #5ba4a4;
+      position: absolute;
+      top: 0;
+      right: 0;
+      transform: translateX(100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: 0 .5rem;
+      border-radius: 0 .3rem .3rem 0; }
+    .button--tag:hover {
+      background: #eef6f6;
+      color: #5ba4a4; }
+      .button--tag:hover::after {
+        background-color: #2c3a3a; }
+
+.flex {
+  display: flex;
+  flex-direction: column; }
+  @media (min-width: 48rem) {
+    .flex {
+      flex-direction: row;
+      align-items: center; } }
+  .flex--row {
+    flex-direction: row;
+    align-items: center; }
+
+.loading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3.125rem;
+  height: 3.125rem; }
+  .loading::before {
+    content: "";
+    border: .5rem solid transparent;
+    border-top-color: #7b8e8e;
+    border-bottom-color: #7b8e8e;
+    display: block;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    animation: loading 1s linear infinite; }

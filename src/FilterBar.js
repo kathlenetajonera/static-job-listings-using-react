@@ -7,7 +7,8 @@ const FilterBar = ({ filters, handleDelete }) => {
                     onClick={handleDelete}
                     className="button button--tag"
                     value={ filter }
-                    key={ filter }>
+                    key={ filter }
+                    >
                     { filter }
                     </button>
                 ))}

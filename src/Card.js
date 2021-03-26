@@ -1,6 +1,10 @@
+import useIntersection from "./useIntersection";
+
 const Card = ({ job, filterButtons, handleSelect }) => {
+    const [ cardRef ] = useIntersection();
+
     return (
-        <div className={`job ${ job.featured === true ? 'job--featured' : '' }`}>
+        <div ref={cardRef} className={`job ${ job.featured === true ? 'job--featured' : '' }`}>
             <div className="job__details">
                 <div className="flex">
                     <img className="job__company-img" src={ job.logo } alt={ job.company }/>
