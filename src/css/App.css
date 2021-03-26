@@ -208,3 +208,12 @@ html, body {
     height: 100%;
     border-radius: 50%;
     animation: loading 1s linear infinite; }
+
+.attribution {
+  font-family: "Spartan", sans-serif;
+  font-size: 10px;
+  text-align: center;
+  padding: 1rem 0;
+  cursor: default; }
+  .attribution a {
+    color: #3e52a3; }

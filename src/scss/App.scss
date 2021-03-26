@@ -288,3 +288,13 @@ html, body {
         animation: loading 1s linear infinite;
     }
 }
+
+.attribution {
+    font-family: $font-family;
+    font-size: 10px;
+    text-align: center;
+    padding: 1rem 0;
+    cursor: default;
+
+    a { color: hsl(228, 45%, 44%); }
+}
